@@ -100,6 +100,11 @@ public class MarsRover {
         this.Teleport(new CartesianMarsCoordinates(x,y));
     }
 
+    /**
+     * Translates a char into a movement
+     * @param c
+     * @throws ObstacleException 
+     */
     private void move(char c) throws ObstacleException {
         switch (c){
             case 'f':

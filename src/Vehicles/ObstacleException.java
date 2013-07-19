@@ -12,5 +12,6 @@ public class ObstacleException extends Exception {
 
     public ObstacleException() {
     }
+
     
 }
