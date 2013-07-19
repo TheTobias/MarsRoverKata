@@ -1,6 +1,4 @@
 package Maps;
-
-import java.lang.Math;
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -29,6 +27,7 @@ public class CartesianMarsCoordinates {
         this.y = wrap(y,Height);             
     }
     
+    /**checks if two sets of coordinates are equal */
     public boolean equals(CartesianMarsCoordinates c){
         return(this.x == c.x && this.y == c.y);
     }
