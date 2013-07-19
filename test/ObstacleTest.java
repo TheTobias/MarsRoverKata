@@ -3,10 +3,8 @@
  * and open the template in the editor.
  */
 
-import org.junit.AfterClass;
+import Terrain.Obstacles;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.BeforeClass;
 
 /**
  *
@@ -22,13 +20,13 @@ public class ObstacleTest {
     // @Test
     // public void hello() {}
     static Obstacles obstacles = new Obstacles();
-    Obstacles.add(200,200);
+    obstacles.add(200,200);
     
     
     @Test
     public void check(){
-        assert Obstacles.check(200,200) == true;
-        assert Obstacles.check(0,0) == false;
+        assert obstacles.check(200,200) == true;
+        assert obstacles.check(0,0) == false;
     }
             
  
