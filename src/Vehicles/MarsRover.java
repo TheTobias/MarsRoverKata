@@ -5,6 +5,7 @@
 package Vehicles;
 
 import Maps.CartesianMarsCoordinates;
+import Terrain.Obstacles;
 
 /**
  *
@@ -13,6 +14,7 @@ import Maps.CartesianMarsCoordinates;
 public class MarsRover {
     
     private CartesianMarsCoordinates position;
+    private Obstacles obstacles;
     
 
     /**
@@ -21,8 +23,18 @@ public class MarsRover {
      * @param y y coordinate
      */
     public MarsRover(int x, int y) {
+       this(x,y,new Obstacles()); 
+    }
+
+    /**
+     * New constructor that allows for obstacles
+     * @param x
+     * @param y
+     * @param obstacles 
+     */
+    public MarsRover(int x, int y, Obstacles obstacles) {
         this.position = new CartesianMarsCoordinates(x,y);
-        
+        this.obstacles = obstacles;
     }
     
     /**

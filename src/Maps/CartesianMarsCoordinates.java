@@ -58,6 +58,15 @@ public class CartesianMarsCoordinates {
         }
         return(coordinate % max);
     }
+    
+    /**
+     * 
+     * @return String representation of the Coordinates
+     */
+    @Override
+    public String toString(){
+        return(String.valueOf(x)+"#"+String.valueOf(y));
+    }
             
     
 }

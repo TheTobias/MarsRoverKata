@@ -4,6 +4,7 @@
  */
 
 import Terrain.Obstacles;
+import Vehicles.MarsRover;
 import org.junit.Test;
 
 /**
@@ -20,14 +21,25 @@ public class ObstacleTest {
     // @Test
     // public void hello() {}
     static Obstacles obstacles = new Obstacles();
-    
+    static MarsRover rover;
     
     
     @Test
-    public void check(){
+    public void TestObstacleClassBasics(){
         obstacles.add(200,200);
         assert obstacles.check(200,200) == true;
         assert obstacles.check(0,0) == false;
+    }
+    
+    @Test
+    public void TestObstacleIntegration(){
+        rover = new MarsRover(100,100,obstacles);
+    }
+           
+    
+    @Test
+    public void TestRoverSpawnOnObstacle(){
+        rover = new MarsRover(200,200,obstacles);
     }
             
  

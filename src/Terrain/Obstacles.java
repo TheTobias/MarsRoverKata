@@ -16,7 +16,7 @@ public class Obstacles {
     /**
      * To store the obstacles, Hashtable instead of Hashmap because it is synchronized (in case you have multiple rovers on the same terrain
      */
-    private Hashtable<CartesianMarsCoordinates,Boolean> Obstacles;
+    private Hashtable<String,Boolean> Obstacles;
     
     public Obstacles(){
         this.Obstacles = new Hashtable<>();
@@ -36,7 +36,7 @@ public class Obstacles {
      * @param c coordinates
      */
     public void add(CartesianMarsCoordinates c){
-        this.Obstacles.put(c, true);
+        this.Obstacles.put(c.toString(), true);
     }
 
     /**
@@ -46,7 +46,7 @@ public class Obstacles {
      * @return true if there is an obstacle, false if not
      */
     public boolean check(int x, int y) {
-        this.check(new CartesianMarsCoordinates(x,y));
+        return(this.check(new CartesianMarsCoordinates(x,y)));
     }
 
     /**
@@ -55,7 +55,7 @@ public class Obstacles {
      * @return true if there is an obstacle, false if not
      */
     private boolean check(CartesianMarsCoordinates c) {
-        return(this.Obstacles.containsKey(c));
+        return(this.Obstacles.containsKey(c.toString()));
     }
     
 
