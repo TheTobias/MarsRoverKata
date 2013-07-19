@@ -20,11 +20,12 @@ public class ObstacleTest {
     // @Test
     // public void hello() {}
     static Obstacles obstacles = new Obstacles();
-    obstacles.add(200,200);
+    
     
     
     @Test
     public void check(){
+        obstacles.add(200,200);
         assert obstacles.check(200,200) == true;
         assert obstacles.check(0,0) == false;
     }
