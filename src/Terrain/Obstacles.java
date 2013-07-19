@@ -9,5 +9,11 @@ package Terrain;
  * @author Tobias
  */
 public class Obstacles {
+
+    public static class add {
+
+        public add() {
+        }
+    }
     
 }
