@@ -5,6 +5,7 @@
 
 import Maps.CartesianMarsCoordinates;
 import Vehicles.MarsRover;
+import Vehicles.ObstacleException;
 import org.junit.Test;
 
 /**
@@ -27,7 +28,7 @@ public class RoverTest {
         CartesianMarsCoordinates target;
 
        @Test
-       public void Forward(){
+       public void Forward() throws ObstacleException{
            rover.Teleport(100,100);
            rover.commando("f");
            target = new CartesianMarsCoordinates(100,101);
@@ -35,7 +36,7 @@ public class RoverTest {
        }
 
        @Test
-       public void Backward(){
+       public void Backward() throws ObstacleException{
            rover.Teleport(100,100);
            rover.commando("b");
            target = new CartesianMarsCoordinates(100,99);
@@ -43,7 +44,7 @@ public class RoverTest {
        }
        
        @Test
-       public void Left(){
+       public void Left() throws ObstacleException{
            rover.Teleport(100,100);
            rover.commando("l");
            target = new CartesianMarsCoordinates(99,100);
@@ -51,15 +52,16 @@ public class RoverTest {
        }
        
        @Test
-       public void Right(){
+       public void Right() throws ObstacleException{
            rover.Teleport(100,100);
            rover.commando("r");
            target = new CartesianMarsCoordinates(101,100);
+           System.out.println(rover.getPosition());
            assert rover.getPosition().equals(target);
        }
     
        @Test
-       public void Sequence(){
+       public void Sequence() throws ObstacleException{
            rover.Teleport(50,50);
            rover.commando("ffll");
            target = new CartesianMarsCoordinates(48,52);

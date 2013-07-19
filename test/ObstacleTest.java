@@ -3,9 +3,10 @@
  * and open the template in the editor.
  */
 
-import Vehicles.SpawnOnObstacleException;
 import Terrain.Obstacles;
 import Vehicles.MarsRover;
+import Vehicles.ObstacleException;
+import Vehicles.SpawnOnObstacleException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.Test;
@@ -38,20 +39,18 @@ public class ObstacleTest {
 //     * Tests integration of the new Obstacle class in the Rover class
 //     */
 //    @Test
-//    public void TestObstacleIntegration(){
+//    public void TestObstacleIntegration() throws SpawnOnObstacleException{
 //        //if no set of obstacles is specified, there are no obstacles
 //        rover = new MarsRover(100,100);
 //        assert rover.getObstacles().check(200,200) == false;
 //        
-//        try {
+//        
 //            rover = new MarsRover(100,100,obstacles);
-//        } catch (SpawnOnObstacleException ex) {
-//            
-//        }
+//        
 //        assert rover.getObstacles().check(200,200) == true;
 //        
 //    }
-           
+//           
     
     
     /**
@@ -69,6 +68,35 @@ public class ObstacleTest {
         assert b;
         
     }
+    
+    @Test
+    public void TestRoverStaysInPlace() throws SpawnOnObstacleException{
+        rover = new MarsRover(199,200,obstacles);
+        try {
+            rover.commando("r");
+        } catch (ObstacleException ex) {
+            Logger.getLogger("Rover hit obstacle");
+        }
+        System.out.println(rover.getPosition());
+        assert rover.getPosition().getx() == 199;
+        
+    }
+    
+    
+    @Test
+    public void TestRoverStops() throws SpawnOnObstacleException{
+        rover = new MarsRover(190,190,obstacles);
+        try {
+            rover.commando("rfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfr");
+        } catch (ObstacleException ex) {
+            Logger.getLogger("Rover hit obstacle at" + rover.getPosition().toString());
+        }
+        System.out.println(rover.getPosition());
+        assert rover.getPosition().getx() == 200;
+        assert rover.getPosition().gety() == 199;
+        
+    }
+    
             
  
 }
