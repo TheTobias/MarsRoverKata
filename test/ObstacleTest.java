@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 
+import Vehicles.SpawnOnObstacleException;
 import Terrain.Obstacles;
 import Vehicles.MarsRover;
 import org.junit.Test;
@@ -46,7 +47,13 @@ public class ObstacleTest {
     
     @Test
     public void TestRoverSpawnOnObstacle(){
-        rover = new MarsRover(200,200,obstacles);
+        try{
+            rover = new MarsRover(200,200,obstacles);
+        }
+        catch(SpawnOnObstacleException e){
+            
+        }
+        
     }
             
  
