@@ -15,6 +15,7 @@ public class Obstacles {
 
     /**
      * To store the obstacles, Hashtable instead of Hashmap because it is synchronized (in case you have multiple rovers on the same terrain
+     * Each obstacle is stored as an entry in the Hashtable with the string representation of the coordinates as the key
      */
     private Hashtable<String,Boolean> Obstacles;
     
