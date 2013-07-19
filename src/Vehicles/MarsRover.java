@@ -5,7 +5,6 @@
 package Vehicles;
 
 import Maps.CartesianMarsCoordinates;
-import java.util.LinkedList;
 
 /**
  *
