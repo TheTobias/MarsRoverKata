@@ -9,6 +9,6 @@ package Vehicles;
  *
  * @author Tobias
  */
-public class SpawnOnObstacleException extend Exception{
+public class SpawnOnObstacleException extends Exception{
     
 }

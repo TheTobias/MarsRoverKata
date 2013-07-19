@@ -23,7 +23,10 @@ public class MarsRover {
      * @param y y coordinate
      */
     public MarsRover(int x, int y) {
-       this(x,y,new Obstacles()); 
+       this.position = new CartesianMarsCoordinates(x,y);
+       this.obstacles = new Obstacles(); 
+       
+       
     }
 
     /**
@@ -32,9 +35,12 @@ public class MarsRover {
      * @param y
      * @param obstacles 
      */
-    public MarsRover(int x, int y, Obstacles obstacles) {
-        this.position = new CartesianMarsCoordinates(x,y);
+    public MarsRover(int x, int y, Obstacles obstacles) throws SpawnOnObstacleException{
+        this(x,y);
         this.obstacles = obstacles;
+        if(obstacles.check(x, y)){
+            throw new SpawnOnObstacleException();
+        }
     }
     
     /**
