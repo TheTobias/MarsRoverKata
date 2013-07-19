@@ -53,7 +53,6 @@ public class CoordinateTest {
     //**Test if coordinates wrap correctly (Planets are round) */
     @Test
     public void wraparound(){
-        //
         int x_offset = 5*CartesianMarsCoordinates.Width;
         int y_offset = 4*CartesianMarsCoordinates.Height;
         CartesianMarsCoordinates c1 = new CartesianMarsCoordinates(10+x_offset,10+y_offset);

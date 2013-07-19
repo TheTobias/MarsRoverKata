@@ -65,7 +65,12 @@ public class RoverTest {
        public void Sequence(){
            rover.Teleport(50,50);
            rover.commando("ffll");
-           target = new CartesianMarsCoordinates(98,102);
+           target = new CartesianMarsCoordinates(48,52);
+           assert rover.getPosition().equals(target);
+           
+           rover.Teleport(CartesianMarsCoordinates.Width-1,0);
+           rover.commando("rrrrbbbb");
+           target = new CartesianMarsCoordinates(3,CartesianMarsCoordinates.Height-4);
            assert rover.getPosition().equals(target);
        }
 }

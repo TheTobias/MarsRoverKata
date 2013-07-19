@@ -5,8 +5,6 @@
 package Vehicles;
 
 import Maps.CartesianMarsCoordinates;
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.LinkedList;
 
 /**
@@ -16,7 +14,7 @@ import java.util.LinkedList;
 public class MarsRover {
     
     private CartesianMarsCoordinates position;
-    private LinkedList<Character> commandos;
+    
 
     /**
      * constructor of a mars rover
@@ -25,7 +23,7 @@ public class MarsRover {
      */
     public MarsRover(int x, int y) {
         this.position = new CartesianMarsCoordinates(x,y);
-        this.commandos = new LinkedList();
+        
     }
     
     /**
@@ -55,18 +53,10 @@ public class MarsRover {
      */
     public void commando(char[] c) {
         for(int i = 0; i<c.length;i++){
-            this.commandos.add(c[i]);
+            this.move(c[i]);
         }
     }
     
-    /**
-     * Clears all commandos
-     * @return the position of the rover
-     */
-    public CartesianMarsCoordinates reset(){
-        this.commandos = new LinkedList<>();
-        return(this.position);
-    }
 
     /**
      * overloads commando(char[] c)
@@ -83,6 +73,25 @@ public class MarsRover {
      */
     public void Teleport(int x, int y){
         this.Teleport(new CartesianMarsCoordinates(x,y));
+    }
+
+    private void move(char c) {
+        switch (c){
+            case 'f':
+                this.move(0,1);
+                break;
+            case 'b':
+                 this.move(0,-1);
+                 break;
+            case 'l':
+                 this.move(-1,0);
+                 break;
+            case 'r':
+                 this.move(1,0);
+                 break;
+        }
+            
+                
     }
     
     
