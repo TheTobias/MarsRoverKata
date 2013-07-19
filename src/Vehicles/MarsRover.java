@@ -33,7 +33,8 @@ public class MarsRover {
      * New constructor that allows for obstacles
      * @param x
      * @param y
-     * @param obstacles 
+     * @param obstacles
+     * @throws SpawnOnObstacleException 
      */
     public MarsRover(int x, int y, Obstacles obstacles) throws SpawnOnObstacleException{
         this(x,y);
@@ -46,10 +47,14 @@ public class MarsRover {
     /**
      * moves the rover x in x-direction and y in y-direction
      * @param x
-     * @param y 
+     * @param y
+     * @throws ObstacleException 
      */
-    private void move(int x,int y){
-        this.position.add(x, y);
+    private void move(int x,int y) throws ObstacleException{
+        if(this.obstacles.check(this.position.add(x, y))){
+            this.position.add(-x,-y);
+            throw new ObstacleException();
+        }
     }
     
     public CartesianMarsCoordinates getPosition(){
@@ -60,7 +65,10 @@ public class MarsRover {
      * Moves the rover to a given position
      * @param p Position to teleport to
      */
-    private void Teleport(CartesianMarsCoordinates p){
+    private void Teleport(CartesianMarsCoordinates p) throws ObstacleException{
+        if(this.obstacles.check(p)){
+            throw new ObstacleException();
+        }
         this.position = p;
     }
 
@@ -68,7 +76,7 @@ public class MarsRover {
      * Add some driving directions to the existing commandos
      * @param c commandos to add
      */
-    public void commando(char[] c) {
+    public void commando(char[] c) throws ObstacleException {
         for(int i = 0; i<c.length;i++){
             this.move(c[i]);
         }
@@ -79,7 +87,7 @@ public class MarsRover {
      * overloads commando(char[] c)
      * @param f Commandos to add
      */
-    public void commando(String f) {
+    public void commando(String f) throws ObstacleException {
         this.commando(f.toCharArray());
     }
     
@@ -88,11 +96,11 @@ public class MarsRover {
      * @param x 
      * @param y 
      */
-    public void Teleport(int x, int y){
+    public void Teleport(int x, int y) throws ObstacleException{
         this.Teleport(new CartesianMarsCoordinates(x,y));
     }
 
-    private void move(char c) {
+    private void move(char c) throws ObstacleException {
         switch (c){
             case 'f':
                 this.move(0,1);

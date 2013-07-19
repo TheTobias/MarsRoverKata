@@ -54,7 +54,7 @@ public class Obstacles {
      * @param c coordinates
      * @return true if there is an obstacle, false if not
      */
-    private boolean check(CartesianMarsCoordinates c) {
+    public boolean check(CartesianMarsCoordinates c) {
         return(this.Obstacles.containsKey(c.toString()));
     }
     

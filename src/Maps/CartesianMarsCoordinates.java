@@ -33,9 +33,20 @@ public class CartesianMarsCoordinates {
         return(this.x == c.x && this.y == c.y);
     }
 
-    public void add(int x, int y) {
+    /**
+     * Add x and y to coordinates
+     * @param x 
+     * @param y 
+     */
+    public CartesianMarsCoordinates add(int x, int y) {
         this.x = wrap(this.x+x,Width);
         this.y = wrap(this.y+y,Height);
+        return(this.clone());
+    }
+    
+    @Override
+    public CartesianMarsCoordinates clone(){
+        return(new CartesianMarsCoordinates(this.x,this.y));
     }
     
     public int getx(){
