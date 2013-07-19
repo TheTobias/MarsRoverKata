@@ -33,7 +33,14 @@ public class ObstacleTest {
     
     @Test
     public void TestObstacleIntegration(){
+        //if no set of obstacles is specified, there are no obstacles
+        rover = new MarsRover(100,100);
+        assert rover.getObstacles().check(200,200) == false;
+        
+
         rover = new MarsRover(100,100,obstacles);
+        assert rover.getObstacles().check(200,200) == true;
+        
     }
            
     

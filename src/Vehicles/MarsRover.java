@@ -104,6 +104,14 @@ public class MarsRover {
             
                 
     }
+
+    /**
+     * 
+     * @return the set of obstacles
+     */
+    public Obstacles getObstacles() {
+        return(this.obstacles);
+    }
     
     
 }
