@@ -6,6 +6,7 @@
 import Maps.CartesianMarsCoordinates;
 import Vehicles.MarsRover;
 import Vehicles.ObstacleException;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -32,7 +33,7 @@ public class RoverTest {
            rover.Teleport(100,100);
            rover.commando("f");
            target = new CartesianMarsCoordinates(100,101);
-           assert rover.getPosition().equals(target);
+           Assert.assertTrue(rover.getPosition().equals(target));
        }
 
        @Test
@@ -40,7 +41,7 @@ public class RoverTest {
            rover.Teleport(100,100);
            rover.commando("b");
            target = new CartesianMarsCoordinates(100,99);
-           assert rover.getPosition().equals(target);
+           Assert.assertTrue(rover.getPosition().equals(target));
        }
        
        @Test
@@ -48,7 +49,7 @@ public class RoverTest {
            rover.Teleport(100,100);
            rover.commando("l");
            target = new CartesianMarsCoordinates(99,100);
-           assert rover.getPosition().equals(target);
+           Assert.assertTrue(rover.getPosition().equals(target));
        }
        
        @Test
@@ -57,19 +58,38 @@ public class RoverTest {
            rover.commando("r");
            target = new CartesianMarsCoordinates(101,100);
            System.out.println(rover.getPosition());
-           assert rover.getPosition().equals(target);
+           Assert.assertTrue(rover.getPosition().equals(target));
        }
     
        @Test
        public void Sequence() throws ObstacleException{
            rover.Teleport(50,50);
-           rover.commando("ffll");
+           rover.commando("fflff");
            target = new CartesianMarsCoordinates(48,52);
-           assert rover.getPosition().equals(target);
+           Assert.assertTrue(rover.getPosition().equals(target));
            
            rover.Teleport(CartesianMarsCoordinates.Width-1,0);
-           rover.commando("rrrrbbbb");
+           rover.commando("rfffflbbbb");
            target = new CartesianMarsCoordinates(3,CartesianMarsCoordinates.Height-4);
-           assert rover.getPosition().equals(target);
+           Assert.assertTrue(rover.getPosition().equals(target));
        }
+       
+       
+       @Test
+       public void directions() throws ObstacleException{
+           MarsRover.direction d = MarsRover.direction.DOWN;
+           Assert.assertEquals(d.turnLeft().turnLeft(), d.turnRight().turnRight());
+           d = MarsRover.direction.LEFT;
+           Assert.assertEquals(d.turnLeft().turnLeft(), d.turnRight().turnRight());
+           d = MarsRover.direction.RIGHT;
+           Assert.assertEquals(d.turnLeft().turnLeft(), d.turnRight().turnRight());
+           d = MarsRover.direction.UP;
+           Assert.assertEquals(d.turnLeft().turnLeft(), d.turnRight().turnRight());
+           d = MarsRover.direction.LEFT;
+           Assert.assertTrue(d.getX() == -1);
+           rover = new MarsRover(99,99);
+           Assert.assertTrue(rover.getDirection() == MarsRover.direction.UP);
+       }
+               
+               
 }

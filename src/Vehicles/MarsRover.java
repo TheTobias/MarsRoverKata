@@ -15,8 +15,76 @@ public class MarsRover {
     
     private CartesianMarsCoordinates position;
     private Obstacles obstacles;
+    private direction course;
     
-
+    public enum direction{
+        UP (0,1), LEFT(-1,0), DOWN(0,-1), RIGHT(1,0);
+        
+        private final int x;
+        private final int y;
+        
+        direction(int x, int y){
+            this.x = x;
+            this.y = y;
+        }
+        
+        public int getX(){
+           return(this.x); 
+        }
+        
+        public int getY(){
+            return(this.y);
+        }
+        
+        /**
+         * 
+         * @return the direction turned 90° counterclockwise
+         */
+        public direction turnLeft(){
+            switch(this){
+                case LEFT:
+                    return(DOWN);
+                case DOWN:
+                    return(RIGHT);
+                case RIGHT:
+                    return(UP);
+                case UP:
+                    return(LEFT);
+            }
+            return(null);
+        }
+        
+        /**
+         * 
+         * @return the direction turned 90° clockwise
+         */
+        public direction turnRight(){
+            return(this.turnLeft().turnLeft().turnLeft());
+        }
+        
+        /**
+         * 
+         * @return string representation of the direction
+         */
+        @Override
+        public String toString(){
+            switch(this){
+                case LEFT:
+                    return("LEFT");
+                case DOWN:
+                    return("DOWN");
+                case RIGHT:
+                    return("RIGHT");
+                case UP:
+                    return("UP");
+            }
+            return("");
+        }
+        
+        
+    }
+    
+    
     /**
      * constructor of a mars rover
      * @param x x coordinate
@@ -24,7 +92,8 @@ public class MarsRover {
      */
     public MarsRover(int x, int y) {
        this.position = new CartesianMarsCoordinates(x,y);
-       this.obstacles = new Obstacles(); 
+       this.obstacles = new Obstacles();
+       course = direction.UP;
        
        
     }
@@ -56,6 +125,8 @@ public class MarsRover {
             throw new ObstacleException();
         }
     }
+    
+    
     
     public CartesianMarsCoordinates getPosition(){
         return(this.position);
@@ -108,16 +179,16 @@ public class MarsRover {
     private void move(char c) throws ObstacleException {
         switch (c){
             case 'f':
-                this.move(0,1);
+                this.move(this.course.x,this.course.y);
                 break;
             case 'b':
-                 this.move(0,-1);
+                 this.move(-this.course.x,-this.course.y);
                  break;
             case 'l':
-                 this.move(-1,0);
+                 this.course.turnLeft();
                  break;
             case 'r':
-                 this.move(1,0);
+                 this.course.turnRight();
                  break;
         }
             
@@ -130,6 +201,14 @@ public class MarsRover {
      */
     public Obstacles getObstacles() {
         return(this.obstacles);
+    }
+    
+    /**
+     * 
+     * @return the current course of the rover
+     */
+    public direction getDirection(){
+        return(this.course);
     }
     
     
