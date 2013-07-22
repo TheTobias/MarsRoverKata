@@ -47,7 +47,7 @@ public class RoverTest {
        @Test
        public void Left() throws ObstacleException{
            rover.Teleport(100,100);
-           rover.commando("l");
+           rover.commando("lf");
            target = new CartesianMarsCoordinates(99,100);
            Assert.assertTrue(rover.getPosition().equals(target));
        }
@@ -55,9 +55,8 @@ public class RoverTest {
        @Test
        public void Right() throws ObstacleException{
            rover.Teleport(100,100);
-           rover.commando("r");
+           rover.commando("rf");
            target = new CartesianMarsCoordinates(101,100);
-           System.out.println(rover.getPosition());
            Assert.assertTrue(rover.getPosition().equals(target));
        }
     
@@ -89,6 +88,8 @@ public class RoverTest {
            Assert.assertTrue(d.getX() == -1);
            rover = new MarsRover(99,99);
            Assert.assertTrue(rover.getDirection() == MarsRover.direction.UP);
+           rover.commando("r");
+           Assert.assertTrue(rover.getDirection() == MarsRover.direction.RIGHT);
        }
                
                

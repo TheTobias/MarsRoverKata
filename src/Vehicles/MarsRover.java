@@ -133,7 +133,7 @@ public class MarsRover {
     }
     
     /**
-     * Moves the rover to a given position
+     * Moves the rover to a given position and turns him Upwards
      * @param p Position to teleport to
      */
     private void Teleport(CartesianMarsCoordinates p) throws ObstacleException{
@@ -141,6 +141,7 @@ public class MarsRover {
             throw new ObstacleException();
         }
         this.position = p;
+        this.course = direction.UP;
     }
 
     /**
@@ -185,10 +186,10 @@ public class MarsRover {
                  this.move(-this.course.x,-this.course.y);
                  break;
             case 'l':
-                 this.course.turnLeft();
+                 this.course = this.course.turnLeft();
                  break;
             case 'r':
-                 this.course.turnRight();
+                 this.course = this.course.turnRight();
                  break;
         }
             
